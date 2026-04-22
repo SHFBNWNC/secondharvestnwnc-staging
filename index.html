@@ -1,0 +1,2886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Second Harvest Food Bank of NW NC</title>
+<meta name="description" content="Everyone deserves to eat. Second Harvest serves 35M meals across 18 counties.">
+<meta property="og:title" content="Second Harvest Food Bank of NW NC">
+<meta property="og:description" content="Everyone deserves to eat. Second Harvest serves 35M meals across 18 counties.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Second Harvest Food Bank">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+/* ============================================
+   DESIGN TOKENS — from Design System v3.0
+   ============================================ */
+:root {
+  /* Colors */
+  --navy: #2A3881;
+  --cranberry: #9E2B3A;
+  --amber: #E8A84D;
+  --wheat: #F7F3ED;
+  --cream: #FDFCFA;
+  --wood: #C9B99A;
+  --forest: #2D6A38;
+  --steel: #3D3D3A;
+  --footer-bg: #2D3142;
+
+  /* Surfaces */
+  --glass-bg: rgba(255,255,255, 0.55);
+  --glass-border: rgba(255,255,255, 0.35);
+  --glass-shadow: 0 8px 32px rgba(42,56,129, 0.06);
+  --nav-bg: rgba(247,243,237, 0.88);
+  --nav-shadow: 0 1px 0 rgba(42,56,129, 0.06);
+  --dropdown-bg: rgba(252,251,249, 0.97);
+  --scrim-overlay: rgba(30,30,30, 0.18);
+
+  /* Typography */
+  --font: 'DM Sans', sans-serif;
+
+  /* Spacing */
+  --section-gap: clamp(48px, 6vw, 80px);
+  --inset: 0 clamp(12px, 2vw, 24px);
+  --section-pad: 0 clamp(20px, 6vw, 80px);
+  --content-max: 1100px;
+  --hero-max: 1200px;
+
+  /* Motion */
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================
+   RESET & BASE
+   ============================================ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font);
+  color: var(--steel);
+  background: var(--wheat);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+button { font-family: var(--font); cursor: pointer; border: none; background: none; }
+
+/* Skip link */
+.skip-link {
+  position: absolute; top: -100px; left: 16px;
+  background: var(--navy); color: white;
+  padding: 8px 16px; border-radius: 4px;
+  z-index: 1000; font-size: 14px;
+  transition: top 0.2s;
+}
+.skip-link:focus { top: 8px; }
+
+/* ============================================
+   SECTION TYPOGRAPHY
+   ============================================ */
+.section-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--cranberry);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 16px;
+  position: relative;
+  display: inline-block;
+}
+.section-label::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 2px;
+  background: var(--wood);
+  margin-top: 12px;
+}
+
+.section-heading {
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 300;
+  color: var(--navy);
+  letter-spacing: -1px;
+  line-height: 1.15;
+  max-width: 600px;
+}
+
+/* ============================================
+   NAVIGATION
+   ============================================ */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: 90px;
+  background: var(--nav-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: all 0.4s var(--ease);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.nav.scrolled {
+  height: 70px;
+  box-shadow: var(--nav-shadow);
+}
+.nav-inner {
+  width: 100%;
+  padding: 0 clamp(12px, 2vw, 24px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+/* Logo */
+.nav-logo {
+  width: 70px;
+  height: 70px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.4s var(--ease);
+  overflow: hidden;
+}
+.nav.scrolled .nav-logo {
+  width: 53px;
+  height: 53px;
+}
+.nav-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Nav links */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+.nav-link {
+  font-size: 13px;
+  font-weight: 400;
+  padding: 8px 14px;
+  border-radius: 8px;
+  color: var(--steel);
+  transition: all 0.2s;
+  white-space: nowrap;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.nav-link:hover, .nav-link.active {
+  background: rgba(42,56,129, 0.06);
+  color: var(--navy);
+}
+.nav-link svg {
+  width: 12px; height: 12px;
+  transition: transform 0.2s;
+}
+.nav-link.active svg { transform: rotate(180deg); }
+
+/* CTA pills */
+.nav-ctas {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.nav-cta {
+  font-size: 13px;
+  font-weight: 500;
+  padding: 9px 20px;
+  border-radius: 8px;
+  min-width: 120px;
+  text-align: center;
+  transition: all 0.3s var(--ease);
+  white-space: nowrap;
+}
+.nav-cta:hover { transform: translateY(-2px); }
+.nav-cta--green { background: #3A7D44; color: white; }
+.nav-cta--green:hover { box-shadow: 0 4px 16px rgba(58,125,68,.3); }
+.nav-cta--navy { background: var(--navy); color: white; }
+.nav-cta--navy:hover { box-shadow: 0 4px 16px rgba(42,56,129,.3); }
+.nav-cta--cran { background: var(--cranberry); color: white; }
+.nav-cta--cran:hover { box-shadow: 0 4px 16px rgba(158,43,58,.3); }
+
+/* Dropdown panel */
+.dropdown-scrim {
+  position: fixed;
+  inset: 0;
+  background: var(--scrim-overlay);
+  backdrop-filter: blur(2px);
+  z-index: 98;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.22s var(--ease);
+}
+.dropdown-scrim.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.dropdown-panel {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--dropdown-bg);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+  transition: all 0.22s var(--ease);
+  z-index: 99;
+  border-bottom: 1px solid rgba(42,56,129,0.06);
+}
+.dropdown-panel.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.dropdown-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 36px;
+  display: flex;
+  gap: 64px;
+}
+.dropdown-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.dropdown-col h4 {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--cranberry);
+  margin-bottom: 16px;
+}
+.dropdown-col a {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--steel);
+  padding: 6px 14px;
+  margin-left: -14px;
+  border-radius: 20px;
+  transition: color 0.2s, background 0.2s;
+  background: transparent;
+}
+.dropdown-col a:hover { color: var(--navy); background: rgba(42,56,129,0.06); }
+.dropdown-col a:last-child { border-bottom: none; }
+
+.dropdown-featured {
+  min-width: 260px;
+  background: linear-gradient(135deg, var(--navy), #1e2b63);
+  border-radius: 12px;
+  padding: 24px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.dropdown-featured.green { background: linear-gradient(135deg, var(--forest), #1a4a22); }
+.dropdown-featured.cranberry { background: linear-gradient(135deg, var(--cranberry), #7a1f2c); }
+.dropdown-featured-eyebrow {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  opacity: 0.7;
+  margin-bottom: 8px;
+}
+.dropdown-featured h3 {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.25;
+  margin-bottom: 8px;
+}
+.dropdown-featured p {
+  font-size: 13px;
+  opacity: 0.8;
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+.dropdown-featured-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: white;
+  background: rgba(255,255,255,0.15);
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: background 0.2s;
+  align-self: flex-start;
+}
+.dropdown-featured-btn:hover { background: rgba(255,255,255,0.25); }
+
+/* Mobile hamburger */
+.nav-hamburger {
+  display: none;
+  width: 48px; height: 48px;
+  align-items: center; justify-content: center;
+  border-radius: 8px;
+}
+.nav-hamburger span {
+  display: block; width: 20px; height: 2px;
+  background: var(--steel);
+  position: relative;
+  transition: all 0.3s;
+}
+.nav-hamburger span::before,
+.nav-hamburger span::after {
+  content: ''; position: absolute;
+  width: 20px; height: 2px;
+  background: var(--steel);
+  transition: all 0.3s;
+}
+.nav-hamburger span::before { top: -6px; }
+.nav-hamburger span::after { top: 6px; }
+
+/* ============================================
+   HERO SECTION
+   ============================================ */
+.hero {
+  height: 70vh;
+  min-height: 500px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  margin: var(--inset);
+  border-radius: 16px;
+}
+
+/* Ken Burns background */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 1.4s var(--ease-smooth);
+}
+.hero-bg.active {
+  opacity: 1;
+}
+.hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: kenBurns 14s alternate infinite ease-in-out;
+}
+@keyframes kenBurns {
+  0% { transform: scale(1) translate(0, 0); }
+  100% { transform: scale(1.08) translate(-1%, -1%); }
+}
+.hero-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(20, 24, 50, 0.85) 0%,
+    rgba(20, 24, 50, 0.6) 30%,
+    rgba(20, 24, 50, 0.35) 60%,
+    rgba(20, 24, 50, 0.15) 100%
+  );
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: clamp(32px, 6vw, 80px);
+  padding-bottom: clamp(48px, 8vw, 100px);
+  max-width: var(--hero-max);
+  width: 100%;
+}
+
+/* Hero slides */
+.hero-slide {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 1.4s var(--ease-smooth);
+  pointer-events: none;
+}
+.hero-slide.active {
+  position: relative;
+  opacity: 1;
+  pointer-events: auto;
+}
+.hero-slide .hero-eyebrow,
+.hero-slide h1,
+.hero-slide .hero-sub,
+.hero-slide .hero-buttons {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+}
+.hero-slide.active .hero-eyebrow { opacity: 1; transform: translateY(0); transition-delay: 0.2s; }
+.hero-slide.active h1 { opacity: 1; transform: translateY(0); transition-delay: 0.35s; }
+.hero-slide.active .hero-sub { opacity: 1; transform: translateY(0); transition-delay: 0.5s; }
+.hero-slide.active .hero-buttons { opacity: 1; transform: translateY(0); transition-delay: 0.65s; }
+
+.hero-eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--amber);
+  margin-bottom: 16px;
+}
+
+.hero h1 {
+  font-size: clamp(40px, 7vw, 80px);
+  font-weight: 600;
+  color: white;
+  letter-spacing: -1.5px;
+  line-height: 1.0;
+  margin-bottom: 20px;
+  max-width: 700px;
+}
+
+.hero-sub {
+  font-size: clamp(16px, 2vw, 20px);
+  font-weight: 300;
+  color: rgba(255,255,255, 0.8);
+  line-height: 1.5;
+  margin-bottom: 32px;
+  max-width: 500px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.2px;
+  padding: 14px 32px;
+  border-radius: 50px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s var(--ease);
+  cursor: pointer;
+}
+.btn:hover { transform: translateY(-2px); }
+
+.btn--primary {
+  background: var(--cranberry);
+  color: white;
+  box-shadow: 0 4px 20px rgba(158,43,58, 0.3);
+}
+.btn--primary:hover { box-shadow: 0 8px 30px rgba(158,43,58, 0.4); }
+
+.btn--secondary {
+  background: rgba(255,255,255, 0.2);
+  color: white;
+  border: 1px solid rgba(255,255,255, 0.35);
+  backdrop-filter: blur(12px);
+}
+.btn--secondary:hover { background: rgba(255,255,255, 0.3); }
+
+/* Hero progress dots */
+.hero-progress {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  gap: 8px;
+}
+.hero-dot {
+  width: 32px; height: 3px;
+  border-radius: 2px;
+  background: rgba(255,255,255, 0.3);
+  overflow: hidden;
+  cursor: pointer;
+}
+.hero-dot.active {
+  background: rgba(255,255,255, 0.3);
+}
+.hero-dot-fill {
+  height: 100%;
+  width: 0;
+  background: white;
+  border-radius: 2px;
+}
+.hero-dot.active .hero-dot-fill {
+  animation: dotProgress 15s linear forwards;
+}
+@keyframes dotProgress {
+  to { width: 100%; }
+}
+
+/* ============================================
+   CONTENT SECTIONS
+   ============================================ */
+.section {
+  padding: clamp(24px, 3vw, 40px) clamp(20px, 6vw, 80px) var(--section-gap);
+  max-width: calc(var(--content-max) + clamp(40px, 12vw, 160px));
+  margin: 0 auto;
+}
+
+/* ============================================
+   GET INVOLVED
+   ============================================ */
+.section-wide {
+  padding: clamp(24px, 3vw, 40px) clamp(12px, 2vw, 24px) clamp(12px, 2vw, 20px);
+}
+.get-involved-header {
+  max-width: var(--content-max);
+  margin: 0 auto;
+}
+.get-involved-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(12px, 2vw, 20px);
+  margin-top: 40px;
+  align-items: stretch;
+}
+
+.involved-card {
+  background: var(--cream);
+  border: 1px solid rgba(201,185,154,0.15);
+  border-radius: 16px;
+  padding: 24px 16px 20px;
+  box-shadow: 0 2px 12px rgba(42,56,129,0.04);
+  transition: all 0.3s var(--ease);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0;
+  opacity: 0;
+  transform: translateY(24px);
+}
+.involved-card.card-donate { border-top: 4px solid rgba(158,43,58,0.15); }
+.involved-card.card-volunteer { border-top: 4px solid rgba(232,168,77,0.2); }
+.involved-card.card-drive { border-top: 4px solid rgba(42,56,129,0.12); }
+.involved-card.card-workforce { border-top: 4px solid rgba(45,106,56,0.12); }
+.involved-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.involved-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(42,56,129, 0.08);
+}
+.involved-card-icon {
+  width: 44px; height: 44px;
+  min-width: 44px; min-height: 44px;
+  max-width: 44px; max-height: 44px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+.involved-card-icon svg { width: 20px; height: 20px; flex-shrink: 0; }
+.involved-card-icon.ic-donate { background: rgba(158,43,58,0.08); }
+.involved-card-icon.ic-donate svg { color: var(--cranberry); }
+.involved-card-icon.ic-volunteer { background: rgba(232,168,77,0.1); }
+.involved-card-icon.ic-volunteer svg { color: var(--amber); }
+.involved-card-icon.ic-drive { background: rgba(42,56,129,0.06); }
+.involved-card-icon.ic-drive svg { color: var(--navy); }
+.involved-card-icon.ic-workforce { background: rgba(45,106,56,0.08); }
+.involved-card-icon.ic-workforce svg { color: var(--forest); }
+
+.involved-card h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--steel);
+  letter-spacing: -0.1px;
+  margin-bottom: 6px;
+}
+.involved-card p {
+  font-size: 12px;
+  color: var(--steel);
+  opacity: 0.6;
+  line-height: 1.45;
+  margin-bottom: 12px;
+}
+.involved-card-btn {
+  display: inline-block;
+  margin-top: auto;
+  padding: 7px 16px;
+  border-radius: 50px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  transition: all 0.25s var(--ease);
+  text-decoration: none;
+}
+.involved-card-btn:hover { transform: scale(1.04); }
+.involved-card-btn.btn-donate { background: var(--cranberry); color: white; }
+.involved-card-btn.btn-volunteer { background: var(--amber); color: var(--steel); }
+.involved-card-btn.btn-drive { background: var(--steel); color: white; }
+.involved-card-btn.btn-workforce { background: rgba(45,106,56,0.1); color: var(--forest); }
+
+/* ============================================
+   FOOD FINDER STRIP
+   ============================================ */
+.food-finder {
+  background: var(--navy);
+  margin: 0 clamp(12px, 2vw, 24px);
+  border-radius: 20px;
+  padding: clamp(36px, 6vw, 64px);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+.food-finder::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -10%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(232,168,77,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.food-finder-inner {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 48px;
+  align-items: center;
+}
+.food-finder-eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--amber);
+  margin-bottom: 12px;
+}
+.food-finder h2 {
+  font-size: clamp(24px, 3.5vw, 36px);
+  font-weight: 300;
+  letter-spacing: -0.8px;
+  line-height: 1.15;
+  margin-bottom: 8px;
+}
+.food-finder-sub {
+  font-size: 15px;
+  opacity: 0.7;
+  margin-bottom: 24px;
+}
+
+/* Search bar */
+.ff-search {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.ff-input {
+  flex: 1;
+  min-width: 180px;
+  padding: 14px 20px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.08);
+  color: white;
+  font-size: 14px;
+  font-family: var(--font);
+  backdrop-filter: blur(12px);
+  transition: border-color 0.2s;
+}
+.ff-input::placeholder { color: rgba(255,255,255,0.4); }
+.ff-input:focus { outline: none; border-color: var(--amber); }
+.ff-btn {
+  padding: 14px 28px;
+  background: var(--cranberry);
+  color: white;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: var(--font);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s var(--ease);
+}
+.ff-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(158,43,58,0.4); }
+
+.food-finder-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: right;
+}
+.ff-stat-num {
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 600;
+  letter-spacing: -2px;
+  line-height: 1;
+}
+.ff-stat-label {
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  opacity: 0.5;
+  margin-top: -8px;
+}
+
+/* Food Finder Results */
+.ff-results {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.6s var(--ease), opacity 0.4s var(--ease), margin 0.6s var(--ease);
+  margin-top: 0;
+  position: relative;
+}
+.ff-results.visible {
+  max-height: 800px;
+  opacity: 1;
+  margin-top: 32px;
+}
+.ff-close {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.6);
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.1);
+  transition: all 0.25s var(--ease);
+  z-index: 2;
+}
+.ff-close:hover {
+  background: rgba(255,255,255,0.18);
+  color: white;
+  transform: scale(1.1);
+}
+.ff-results-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+.ff-map {
+  border-radius: 14px;
+  overflow: hidden;
+  min-height: 340px;
+  background: #1e2a5a;
+  position: relative;
+}
+.ff-listings {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.ff-listing {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  transition: background 0.2s;
+}
+.ff-listing:last-of-type { border-bottom: none; }
+.ff-listing-num {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--cranberry);
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+.ff-listing-info { flex: 1; }
+.ff-listing-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 3px;
+  line-height: 1.3;
+}
+.ff-listing-address {
+  font-size: 12px;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.4;
+}
+.ff-listing-meta {
+  display: flex;
+  gap: 12px;
+  margin-top: 5px;
+}
+.ff-listing-tag {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.6);
+}
+.ff-listing-dist {
+  font-size: 11px;
+  color: var(--amber);
+  font-weight: 500;
+}
+.ff-view-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  padding: 12px 28px;
+  background: var(--cranberry);
+  color: white;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: var(--font);
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.3px;
+  transition: all 0.3s var(--ease);
+  text-decoration: none;
+  align-self: flex-start;
+}
+.ff-view-all:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(158,43,58,0.4);
+}
+.ff-view-all span { transition: transform 0.2s; }
+.ff-view-all:hover span { transform: translateX(3px); }
+.ff-results-count {
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+
+/* ============================================
+   IMPACT STATS
+   ============================================ */
+.impact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 40px;
+}
+.impact-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: clamp(32px, 4vw, 48px);
+  box-shadow: var(--glass-shadow);
+  text-align: left;
+}
+.impact-num {
+  font-size: clamp(48px, 7vw, 72px);
+  font-weight: 600;
+  color: var(--navy);
+  letter-spacing: -2px;
+  line-height: 1;
+  margin-bottom: 16px;
+}
+.impact-num .suffix {
+  color: var(--cranberry);
+  font-size: 0.55em;
+  font-weight: 500;
+  letter-spacing: -1px;
+}
+.impact-label {
+  font-size: 14px;
+  color: var(--steel);
+  opacity: 0.7;
+  line-height: 1.55;
+}
+
+/* ============================================
+   MISSION / STORY CARD
+   ============================================ */
+.story-card {
+  background: var(--cream);
+  border: 1px solid rgba(42,56,129, 0.05);
+  border-radius: 24px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 0;
+  margin-top: 40px;
+}
+.story-card-img {
+  min-height: 360px;
+  background-size: cover;
+  background-position: center;
+}
+.story-card-content {
+  padding: clamp(32px, 5vw, 56px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+}
+.story-card-content h3 {
+  font-size: clamp(22px, 3vw, 32px);
+  font-weight: 300;
+  color: var(--navy);
+  letter-spacing: -0.8px;
+  line-height: 1.2;
+}
+.story-card-content p {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--steel);
+  opacity: 0.85;
+}
+.story-card-content .btn {
+  align-self: flex-start;
+  margin-top: 8px;
+}
+
+.btn--page-primary {
+  background: var(--cranberry);
+  color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(158,43,58, 0.2);
+}
+.btn--page-primary:hover { box-shadow: 0 8px 24px rgba(158,43,58, 0.3); }
+
+/* ============================================
+   PROGRAMS GRID
+   ============================================ */
+.programs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 40px;
+}
+.program-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 0;
+  box-shadow: var(--glass-shadow);
+  transition: all 0.3s var(--ease);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.program-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 16px 48px rgba(42,56,129,0.14), 0 0 0 1px rgba(42,56,129,0.06);
+  z-index: 2;
+}
+.program-img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+  flex-shrink: 0;
+}
+.program-card-body {
+  padding: clamp(20px, 2.5vw, 28px);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+.program-card h3 {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--navy);
+}
+.program-card p {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--steel);
+  opacity: 0.8;
+}
+.program-card-link {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--cranberry);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: auto;
+  transition: gap 0.2s;
+}
+.program-card-link:hover { gap: 10px; }
+
+/* ============================================
+   MEAL MAKER CARD
+   ============================================ */
+.meal-maker {
+  background: var(--forest);
+  border-radius: 20px;
+  padding: clamp(36px, 6vw, 56px) clamp(32px, 6vw, 64px);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 5vw, 64px);
+  align-items: center;
+  margin: 0 clamp(12px, 2vw, 24px);
+  color: white;
+  transition: transform 0.4s var(--ease);
+  position: relative;
+  overflow: hidden;
+}
+.meal-maker::before {
+  content: '';
+  position: absolute;
+  top: -30%; right: -10%;
+  width: 350px; height: 350px;
+  background: radial-gradient(circle, rgba(232,168,77,0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+.meal-maker:hover { transform: translateY(-4px); }
+.meal-maker h2 {
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 300;
+  letter-spacing: -1px;
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+.meal-maker p {
+  font-size: 15px;
+  line-height: 1.65;
+  opacity: 0.85;
+  margin-bottom: 24px;
+}
+.btn--amber {
+  background: var(--amber);
+  color: var(--steel);
+  border-radius: 50px;
+  box-shadow: 0 4px 20px rgba(232,168,77,0.3);
+  font-weight: 600;
+}
+.btn--amber:hover { box-shadow: 0 8px 30px rgba(232,168,77,0.4); }
+
+.meal-maker-visual {
+  position: relative;
+  z-index: 1;
+  aspect-ratio: 4/3;
+  border-radius: 20px;
+  overflow: hidden;
+}
+.meal-maker-visual img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+
+
+/* ============================================
+   VOLUNTEER SECTION
+   ============================================ */
+.volunteer {
+  background: var(--navy);
+  margin: 0 clamp(12px, 2vw, 24px);
+  border-radius: 20px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 480px;
+}
+.volunteer-content {
+  padding: clamp(36px, 6vw, 64px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: white;
+  gap: 16px;
+}
+.volunteer-content .section-label { color: var(--amber); }
+.volunteer-content h2 {
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 300;
+  letter-spacing: -1px;
+  line-height: 1.15;
+  color: white;
+}
+.volunteer-content p {
+  font-size: 15px;
+  line-height: 1.65;
+  opacity: 0.8;
+  max-width: 440px;
+}
+.volunteer-img {
+  background-size: cover;
+  background-position: center;
+  border-radius: 16px;
+  margin: 16px 16px 16px 0;
+}
+.btn--amber-hero {
+  background: var(--amber);
+  color: var(--steel);
+  border-radius: 50px;
+  box-shadow: 0 4px 20px rgba(232,168,77,0.3);
+  font-weight: 600;
+  align-self: flex-start;
+}
+.btn--amber-hero:hover { box-shadow: 0 8px 30px rgba(232,168,77,0.4); }
+
+/* ============================================
+   FINAL CTA
+   ============================================ */
+.final-cta {
+  margin: 0 clamp(12px, 2vw, 24px);
+  border-radius: 10px;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+}
+.final-cta-scrim {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(45,49,66, 0.45) 0%,
+    rgba(45,49,66, 0.65) 100%
+  );
+}
+.final-cta-content {
+  position: relative;
+  z-index: 1;
+  color: white;
+  max-width: 600px;
+  padding: 40px;
+}
+.final-cta-content h2 {
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 300;
+  letter-spacing: -1px;
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+.final-cta-content p {
+  font-size: 16px;
+  opacity: 0.8;
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.footer {
+  background: var(--footer-bg);
+  border-top: 3px solid var(--wood);
+  padding: clamp(48px, 8vw, 80px) clamp(20px, 6vw, 80px);
+  color: rgba(255,255,255, 0.7);
+}
+.footer-inner {
+  max-width: var(--content-max);
+  margin: 0 auto;
+}
+.footer-top {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: clamp(32px, 6vw, 64px);
+  margin-bottom: 48px;
+}
+.footer-logo {
+  width: 120px;
+  height: 120px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  display: block;
+}
+.footer-brand h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 12px;
+}
+.footer-brand p {
+  font-size: 14px;
+  line-height: 1.65;
+  margin-bottom: 20px;
+  max-width: 360px;
+}
+.footer-newsletter {
+  display: flex;
+  gap: 8px;
+}
+.footer-newsletter input {
+  flex: 1;
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.06);
+  color: white;
+  font-size: 14px;
+  font-family: var(--font);
+}
+.footer-newsletter input::placeholder { color: rgba(255,255,255,0.35); }
+.footer-newsletter input:focus { outline: none; border-color: var(--amber); }
+.footer-newsletter button {
+  padding: 12px 20px;
+  background: var(--cranberry);
+  color: white;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: var(--font);
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.footer-newsletter button:hover { background: #b03244; }
+
+.footer-social {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 16px;
+}
+.footer-social a {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.6);
+  font-size: 14px;
+  transition: all 0.2s;
+}
+.footer-social a:hover { background: rgba(255,255,255,0.12); color: white; }
+
+.footer-links {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: clamp(24px, 4vw, 48px);
+  padding-top: 40px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.footer-col h4 {
+  font-size: 13px;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 16px;
+}
+.footer-col a {
+  display: inline-block;
+  font-size: 13px;
+  padding: 5px 12px;
+  margin-left: -12px;
+  border-radius: 20px;
+  transition: color 0.2s, background 0.2s;
+  color: rgba(255,255,255,0.5);
+  background: transparent;
+}
+.footer-col a:hover { color: white; background: rgba(255,255,255,0.08); }
+.footer-col p {
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.footer-legal {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  font-size: 12px;
+  color: rgba(255,255,255, 0.3);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.footer-legal-links {
+  display: flex;
+  gap: 20px;
+}
+.footer-legal-links a {
+  color: rgba(255,255,255,0.3);
+  transition: color 0.15s;
+}
+.footer-legal-links a:hover { color: rgba(255,255,255,0.6); }
+
+/* ============================================
+   FLOATING CTAs
+   ============================================ */
+.floating-ctas {
+  position: fixed;
+  bottom: 28px;
+  left: 28px;
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.4s ease;
+  pointer-events: none;
+}
+.floating-ctas.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.floating-btn {
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 20px;
+  border-radius: 50px;
+  color: white;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s var(--ease);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  white-space: nowrap;
+}
+.floating-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+}
+.floating-btn--navy { background: var(--navy); }
+.floating-btn--cran { background: var(--cranberry); }
+
+/* ============================================
+   ALI CHAT BUBBLE
+   ============================================ */
+.ali-bubble {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 200;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--cranberry);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 20px rgba(158,43,58, 0.3);
+}
+.ali-bubble:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 28px rgba(158,43,58, 0.35);
+}
+.ali-bubble-icon {
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+}
+.ali-dot {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--amber);
+  border: 2px solid var(--cranberry);
+}
+
+/* ============================================
+   SCROLL ANIMATIONS
+   ============================================ */
+.fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+}
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 1023px) {
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  .nav-ctas .nav-cta--green { display: none; }
+  
+  .get-involved-grid { grid-template-columns: repeat(2, 1fr); }
+  .food-finder-inner { grid-template-columns: 1fr; }
+  .food-finder-stats { flex-direction: row; text-align: center; }
+  .ff-results-grid { grid-template-columns: 1fr; }
+  .ff-map { min-height: 260px; }
+  .story-card { grid-template-columns: 1fr; }
+  .story-card-img { min-height: 240px; }
+  .programs-grid { grid-template-columns: repeat(2, 1fr); }
+  .meal-maker { grid-template-columns: 1fr; }
+  .meal-maker-visual { order: -1; }
+  .volunteer { grid-template-columns: 1fr; }
+  .volunteer-img { min-height: 300px; }
+  .footer-top { grid-template-columns: 1fr; }
+  .footer-social { justify-content: flex-start; }
+  .footer-links { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 767px) {
+  .hero { height: 100vh; margin: 0; border-radius: 0; }
+  .hero h1 { font-size: clamp(36px, 10vw, 56px); }
+  .nav-ctas { gap: 6px; }
+  .nav-cta { min-width: auto; padding: 9px 14px; font-size: 12px; }
+  .get-involved-grid { grid-template-columns: 1fr; }
+  .impact-grid { grid-template-columns: 1fr; }
+  .programs-grid { grid-template-columns: 1fr; }
+  .footer-links { grid-template-columns: 1fr; gap: 32px; }
+  .footer-legal { flex-direction: column; text-align: center; }
+  .footer-legal-links { justify-content: center; }
+  .floating-ctas { bottom: 16px; left: 16px; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .hero-bg img { animation: none; }
+  .hero-slide.active .hero-eyebrow,
+  .hero-slide.active h1,
+  .hero-slide.active .hero-sub,
+  .hero-slide.active .hero-buttons {
+    opacity: 1; transform: none; transition: none;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Skip Link -->
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<!-- ============================================
+     NAVIGATION
+     ============================================ -->
+<nav class="nav" role="banner" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo" aria-label="Second Harvest Food Bank — Home">
+      <img src="images/main-navigation.jpg" alt="Second Harvest Food Bank of Northwest NC" width="64" height="64">
+    </a>
+
+    <div class="nav-links">
+      <button class="nav-link" data-dropdown="find-help">
+        Find Help
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 5l3 3 3-3"/></svg>
+      </button>
+      <button class="nav-link" data-dropdown="get-involved">
+        Get Involved
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 5l3 3 3-3"/></svg>
+      </button>
+      <button class="nav-link" data-dropdown="programs">
+        Our Programs
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 5l3 3 3-3"/></svg>
+      </button>
+      <button class="nav-link" data-dropdown="impact">
+        Our Impact
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 5l3 3 3-3"/></svg>
+      </button>
+      <button class="nav-link" data-dropdown="hunger">
+        Hunger at Home
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 5l3 3 3-3"/></svg>
+      </button>
+      <button class="nav-link" data-dropdown="about">
+        About Us
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 5l3 3 3-3"/></svg>
+      </button>
+    </div>
+
+    <div class="nav-ctas">
+      <a href="#" class="nav-cta nav-cta--green">HarvestHub</a>
+      <a href="#" class="nav-cta nav-cta--navy">Need food?</a>
+      <a href="#" class="nav-cta nav-cta--cran">Donate</a>
+    </div>
+
+    <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+      <span></span>
+    </button>
+  </div>
+
+  <!-- Dropdown: Find Help -->
+  <div class="dropdown-panel" id="dd-find-help">
+    <div class="dropdown-inner">
+      <div class="dropdown-col">
+        <h4>Find Food</h4>
+        <a href="#">Find Food Now</a>
+        <a href="#">Food Stamps &amp; WIC</a>
+        <a href="#">Summer Meals</a>
+        <a href="#">Nutrition Services</a>
+      </div>
+      <div class="dropdown-col">
+        <h4>Support</h4>
+        <a href="#">Mobile Pantry</a>
+        <a href="#">Partner Pantries</a>
+        <a href="#">Disaster Response</a>
+        <a href="#">SNAP Assistance</a>
+      </div>
+      <div class="dropdown-featured">
+        <div>
+          <div class="dropdown-featured-eyebrow">Featured Tool</div>
+          <h3>Food Finder</h3>
+          <p>253 locations. Real-time hours and availability. Find food in your zip&nbsp;code.</p>
+        </div>
+        <a href="#" class="dropdown-featured-btn">Search now →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dropdown: Get Involved -->
+  <div class="dropdown-panel" id="dd-get-involved">
+    <div class="dropdown-inner">
+      <div class="dropdown-col">
+        <h4>Give</h4>
+        <a href="#">Donate</a>
+        <a href="#">Become a Meal Maker</a>
+        <a href="#">More Ways to Give</a>
+        <a href="#">Corporate Partnerships</a>
+      </div>
+      <div class="dropdown-col">
+        <h4>Do</h4>
+        <a href="#">Volunteer</a>
+        <a href="#">Host a Food Drive</a>
+        <a href="#">Advocate</a>
+        <a href="#">Cater Your Event</a>
+        <a href="#">Signature Events</a>
+      </div>
+      <div class="dropdown-featured cranberry">
+        <div>
+          <div class="dropdown-featured-eyebrow">Monthly Giving</div>
+          <h3>Meal Makers</h3>
+          <p>Join the people who keep this work going. Every month, your gift funds meals, training, and&nbsp;community.</p>
+        </div>
+        <a href="#" class="dropdown-featured-btn">Join today →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dropdown: Our Programs -->
+  <div class="dropdown-panel" id="dd-programs">
+    <div class="dropdown-inner">
+      <div class="dropdown-col">
+        <h4>Food Access</h4>
+        <a href="#">Food Distribution</a>
+        <a href="#">Community Meals</a>
+        <a href="#">Children &amp; Seniors</a>
+        <a href="#">Nutrition &amp; Health</a>
+        <a href="#">Disaster Response</a>
+      </div>
+      <div class="dropdown-col">
+        <h4>Workforce Training</h4>
+        <a href="#">Providence Culinary Training</a>
+        <a href="#">Warehouse &amp; Logistics</a>
+      </div>
+      <div class="dropdown-col">
+        <h4>Community Action</h4>
+        <a href="#">Policy &amp; Advocacy</a>
+      </div>
+      <div class="dropdown-featured green">
+        <div>
+          <div class="dropdown-featured-eyebrow">Career Pathways</div>
+          <h3>Providence Culinary&nbsp;Training</h3>
+          <p>From intro courses to professional catering. Skills that build careers, not just&nbsp;résumés.</p>
+        </div>
+        <a href="#" class="dropdown-featured-btn">Explore programs →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dropdown: Our Impact -->
+  <div class="dropdown-panel" id="dd-impact">
+    <div class="dropdown-inner">
+      <div class="dropdown-col">
+        <h4>Our Impact</h4>
+        <a href="#">By the Numbers</a>
+        <a href="#">Stories</a>
+        <a href="#">Service Area Map</a>
+      </div>
+      <div class="dropdown-featured">
+        <div>
+          <div class="dropdown-featured-eyebrow">Impact at Scale</div>
+          <h3>35 Million Meals</h3>
+          <p>Across 18 counties with 500+ partner agencies. Dignity in every&nbsp;one.</p>
+        </div>
+        <a href="#" class="dropdown-featured-btn">See the numbers →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dropdown: Hunger at Home -->
+  <div class="dropdown-panel" id="dd-hunger">
+    <div class="dropdown-inner">
+      <div class="dropdown-col">
+        <h4>Hunger at Home</h4>
+        <a href="#">Hunger in NW NC</a>
+        <a href="#">Who We Serve</a>
+        <a href="#">The Data</a>
+        <a href="#">Food Insecurity &amp; Health</a>
+      </div>
+      <div class="dropdown-featured cranberry">
+        <div>
+          <div class="dropdown-featured-eyebrow">The Reality</div>
+          <h3>1 in 6 People</h3>
+          <p>In Northwest North Carolina face food insecurity. The problem isn't distant. It's next&nbsp;door.</p>
+        </div>
+        <a href="#" class="dropdown-featured-btn">See the data →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dropdown: About Us -->
+  <div class="dropdown-panel" id="dd-about">
+    <div class="dropdown-inner">
+      <div class="dropdown-col">
+        <h4>About Us</h4>
+        <a href="#">Our Mission</a>
+        <a href="#">Our Team</a>
+        <a href="#">Our Facility</a>
+        <a href="#">Careers</a>
+        <a href="#">News &amp; Press</a>
+        <a href="#">Annual Report</a>
+        <a href="#">Contact Us</a>
+      </div>
+      <div class="dropdown-featured">
+        <div>
+          <div class="dropdown-featured-eyebrow">Visit Us</div>
+          <h3>140,000 Sq Ft</h3>
+          <p>Tour the facility that powers food access across 18 counties. See where the work&nbsp;happens.</p>
+        </div>
+        <a href="#" class="dropdown-featured-btn">Schedule a tour →</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="dropdown-scrim" id="dropdown-scrim"></div>
+
+<!-- ============================================
+     MAIN CONTENT
+     ============================================ -->
+<main id="main">
+
+  <!-- HERO -->
+  <section class="hero" aria-label="Hero">
+    <div class="hero-bg active" data-bg="0">
+      <img src="images/hero.jpg" 
+           alt="Community members receiving fresh produce at a Second Harvest distribution event" 
+           loading="eager">
+    </div>
+    <div class="hero-bg" data-bg="1">
+      <img src="images/community-members-receiving-fresh-produce-at-a-sec.jpg" 
+           alt="Father and daughter smiling at a community food distribution event" 
+           loading="lazy">
+    </div>
+    <div class="hero-bg" data-bg="2">
+      <img src="images/father-and-daughter-smiling-at-a-community-food-di.jpg" 
+           alt="Young girl smiling while enjoying a meal" 
+           loading="lazy">
+    </div>
+    <div class="hero-bg" data-bg="3">
+      <img src="images/young-girl-smiling-while-enjoying-a-meal.jpg" 
+           alt="Volunteer in blue t-shirt reading I am helping to feed so no one has to choose between dinner and rent" 
+           loading="lazy">
+    </div>
+    <div class="hero-bg" data-bg="4">
+      <img src="images/volunteer-in-blue-t-shirt-reading-i-am-helping-to.jpg" 
+           alt="Culinary training student in chef whites seasoning a sheet pan in a commercial kitchen" 
+           loading="lazy">
+    </div>
+    <div class="hero-bg" data-bg="5">
+      <img src="images/culinary-training-student-in-chef-whites-seasoning.jpg" 
+           alt="Elegant table setting with wine glasses and floral centerpieces in the Second Harvest Board Room" 
+           loading="lazy">
+    </div>
+    <div class="hero-scrim"></div>
+    <div class="hero-content">
+      <!-- Slide 0: Default -->
+      <div class="hero-slide active" data-slide="0">
+        <div class="hero-eyebrow">Second Harvest Food Bank NWNC</div>
+        <h1>EVERYONE DESERVES&nbsp;TO&nbsp;EAT.</h1>
+        <p class="hero-sub">Dignity in every delivery. Every county. Every&nbsp;day.</p>
+        <div class="hero-buttons">
+          <a href="#" class="btn btn--primary">Donate today</a>
+          <a href="#" class="btn btn--secondary">Get involved</a>
+        </div>
+      </div>
+      <!-- Slide 1: Neighbor -->
+      <div class="hero-slide" data-slide="1">
+        <div class="hero-eyebrow">Second Harvest Food Bank NWNC</div>
+        <h1>YOU BELONG AT&nbsp;OUR&nbsp;TABLE.</h1>
+        <p class="hero-sub">You are welcome here. No questions asked. Just food, and people who&nbsp;care.</p>
+        <div class="hero-buttons">
+          <a href="#" class="btn btn--primary" style="background:var(--navy);box-shadow:0 4px 20px rgba(42,56,129,.3);">Find food near you</a>
+          <a href="#" class="btn btn--secondary">SNAP assistance</a>
+        </div>
+      </div>
+      <!-- Slide 2: Donor -->
+      <div class="hero-slide" data-slide="2">
+        <div class="hero-eyebrow">Second Harvest Food Bank NWNC</div>
+        <h1>FUND MEALS,<br>JOB TRAINING,<br>AND EVERYTHING<br>IN&nbsp;BETWEEN.</h1>
+        <p class="hero-sub">35 million meals across 18 counties. Dignity in every&nbsp;one.</p>
+        <div class="hero-buttons">
+          <a href="#" class="btn btn--primary">Donate today</a>
+          <a href="#" class="btn btn--secondary">Become a Meal Maker</a>
+        </div>
+      </div>
+      <!-- Slide 3: Volunteer -->
+      <div class="hero-slide" data-slide="3">
+        <div class="hero-eyebrow">Second Harvest Food Bank NWNC</div>
+        <h1>THE MOST MEANINGFUL MORNING IN&nbsp;THE&nbsp;TRIAD.</h1>
+        <p class="hero-sub">Roll up your sleeves. Turn up the music. Feed your&nbsp;community.</p>
+        <div class="hero-buttons">
+          <a href="#" class="btn btn--primary" style="background:var(--amber);color:var(--steel);box-shadow:0 4px 20px rgba(232,168,77,.3);">Volunteer opportunities</a>
+          <a href="#" class="btn btn--secondary">More ways to get involved</a>
+        </div>
+      </div>
+      <!-- Slide 4: Student -->
+      <div class="hero-slide" data-slide="4">
+        <div class="hero-eyebrow">Second Harvest Food Bank NWNC</div>
+        <h1>CULINARY TRAINING.<br>WAREHOUSE LOGISTICS.<br>YOUR&nbsp;FUTURE.</h1>
+        <p class="hero-sub">Job skills programs that build careers, not just&nbsp;résumés.</p>
+        <div class="hero-buttons">
+          <a href="#" class="btn btn--primary" style="background:var(--amber);color:var(--steel);box-shadow:0 4px 20px rgba(232,168,77,.3);">Apply now</a>
+          <a href="#" class="btn btn--secondary">Explore programs</a>
+        </div>
+      </div>
+      <!-- Slide 5: Catering -->
+      <div class="hero-slide" data-slide="5">
+        <div class="hero-eyebrow">Second Harvest's Providence Catering</div>
+        <h1>TIMELESS HOSPITALITY.<br>ROOTED IN SOMETHING<br>EXTRAORDINARY.</h1>
+        <p class="hero-sub">Full-service catering for the moments that matter&nbsp;most.</p>
+        <div class="hero-buttons">
+          <a href="#" class="btn btn--primary" style="background:var(--amber);color:var(--steel);box-shadow:0 4px 20px rgba(232,168,77,.3);">Plan your event</a>
+          <a href="#" class="btn btn--secondary">View menus</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-progress" aria-hidden="true">
+      <div class="hero-dot active"><div class="hero-dot-fill"></div></div>
+      <div class="hero-dot"><div class="hero-dot-fill"></div></div>
+      <div class="hero-dot"><div class="hero-dot-fill"></div></div>
+      <div class="hero-dot"><div class="hero-dot-fill"></div></div>
+      <div class="hero-dot"><div class="hero-dot-fill"></div></div>
+      <div class="hero-dot"><div class="hero-dot-fill"></div></div>
+    </div>
+  </section>
+
+  <!-- GET INVOLVED -->
+  <section class="section-wide" aria-label="Get Involved">
+    <div class="get-involved-header fade-up">
+      <div class="section-label">Get Involved</div>
+      <h2 class="section-heading">Pick your role. There are<br>many ways to be part of&nbsp;this.</h2>
+    </div>
+    <div class="get-involved-grid">
+      <div class="involved-card card-donate" data-delay="0">
+        <div class="involved-card-icon ic-donate">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <h3>Donate today</h3>
+        <p>Fund meals, job training, nutrition education, and everything in&nbsp;between.</p>
+        <a href="#" class="involved-card-btn btn-donate">Donate</a>
+      </div>
+      <div class="involved-card card-volunteer" data-delay="100">
+        <div class="involved-card-icon ic-volunteer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>Volunteer with us</h3>
+        <p>Roll up your sleeves. Turn up the music. Feed your&nbsp;community.</p>
+        <a href="#" class="involved-card-btn btn-volunteer">See opportunities</a>
+      </div>
+      <div class="involved-card card-drive" data-delay="200">
+        <div class="involved-card-icon ic-drive">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+        </div>
+        <h3>Host a food drive</h3>
+        <p>Be the person who brought your whole community&nbsp;in.</p>
+        <a href="#" class="involved-card-btn btn-drive">Get started</a>
+      </div>
+      <div class="involved-card card-workforce" data-delay="300">
+        <div class="involved-card-icon ic-workforce">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <h3>Workforce Development</h3>
+        <p>Culinary training and logistics careers that change&nbsp;lives.</p>
+        <a href="#" class="involved-card-btn btn-workforce">Get info</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEAL MAKER CARD -->
+  <section aria-label="Meal Makers" style="padding: clamp(12px, 2vw, 20px) 0 var(--section-gap) 0;">
+    <div class="meal-maker fade-up">
+      <div>
+        <div class="section-label" style="color: var(--amber);">Monthly Giving</div>
+        <h2>Meal Makers. The people who keep this work&nbsp;going.</h2>
+        <p>Your monthly gift funds meals, job training, nutrition education, and everything in between. Join the community of supporters who make this possible every single&nbsp;day.</p>
+        <a href="#" class="btn btn--amber">Become a Meal Maker</a>
+      </div>
+      <div class="meal-maker-visual">
+        <img src="images/meal-makers.jpg" alt="Campaign photo for Second Harvest current fundraising initiative" loading="lazy">
+        </div>
+    </div>
+  </section>
+
+  <!-- FOOD FINDER -->
+  <section class="food-finder" aria-label="Food Finder">
+    <div class="food-finder-inner">
+      <div>
+        <div class="food-finder-eyebrow">Food Finder</div>
+        <h2>Find food near&nbsp;you.</h2>
+        <p class="food-finder-sub">253 partner locations across 18 counties. Real-time hours and&nbsp;availability.</p>
+        <div class="ff-search">
+          <input type="text" class="ff-input" placeholder="Enter your zip code" aria-label="Zip code">
+          <select class="ff-input" style="flex:0;min-width:120px;" aria-label="Search radius">
+            <option>10 miles</option>
+            <option>5 miles</option>
+            <option>25 miles</option>
+          </select>
+          <button class="ff-btn">Search</button>
+        </div>
+      </div>
+      <div class="food-finder-stats fade-up">
+        <div>
+          <div class="ff-stat-num" data-count="253">0</div>
+          <div class="ff-stat-label">Locations</div>
+        </div>
+        <div>
+          <div class="ff-stat-num" data-count="18">0</div>
+          <div class="ff-stat-label">Counties</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results Panel (hidden until search) -->
+    <div class="ff-results" id="ffResults">
+      <button class="ff-close" id="ffClose" aria-label="Close results">✕</button>
+      <div class="ff-results-grid">
+        <div class="ff-map" style="background:#e8e4dc;">
+          <svg id="ffMapSvg" viewBox="0 0 600 440" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%;min-height:340px;border-radius:14px;">
+            <rect width="600" height="440" fill="#e8e4dc"/>
+            <!-- Land use blocks -->
+            <rect x="0" y="0" width="600" height="440" fill="#eae6de"/>
+            <rect x="105" y="100" width="85" height="60" rx="3" fill="#e0dbd2" opacity="0.7"/>
+            <rect x="215" y="70" width="70" height="55" rx="3" fill="#e0dbd2" opacity="0.7"/>
+            <rect x="320" y="110" width="90" height="50" rx="3" fill="#e0dbd2" opacity="0.6"/>
+            <rect x="140" y="210" width="75" height="50" rx="3" fill="#e0dbd2" opacity="0.6"/>
+            <rect x="340" y="230" width="80" height="55" rx="3" fill="#e0dbd2" opacity="0.5"/>
+            <rect x="440" y="160" width="70" height="45" rx="3" fill="#e0dbd2" opacity="0.5"/>
+            <rect x="60" y="280" width="65" height="45" rx="3" fill="#e0dbd2" opacity="0.5"/>
+            <rect x="460" y="280" width="75" height="50" rx="3" fill="#e0dbd2" opacity="0.4"/>
+            <!-- Parks -->
+            <ellipse cx="175" cy="270" rx="30" ry="22" fill="#c8d8c0" opacity="0.6"/>
+            <ellipse cx="400" cy="155" rx="24" ry="18" fill="#c8d8c0" opacity="0.5"/>
+            <ellipse cx="95" cy="145" rx="32" ry="24" fill="#c8d8c0" opacity="0.5"/>
+            <ellipse cx="500" cy="100" rx="28" ry="20" fill="#c8d8c0" opacity="0.4"/>
+            <!-- Water -->
+            <path d="M520 0 Q510 55 528 115 Q548 175 538 235 Q528 275 548 335 Q558 375 578 440" stroke="#b8cee0" stroke-width="10" fill="none" opacity="0.5" stroke-linecap="round"/>
+            <!-- Grid streets (thin) -->
+            <g stroke="#d5d0c7" stroke-width="1">
+              <line x1="50" y1="0" x2="50" y2="440"/>
+              <line x1="110" y1="0" x2="110" y2="440"/>
+              <line x1="170" y1="0" x2="170" y2="440"/>
+              <line x1="230" y1="0" x2="230" y2="440"/>
+              <line x1="350" y1="0" x2="350" y2="440"/>
+              <line x1="410" y1="0" x2="410" y2="440"/>
+              <line x1="470" y1="0" x2="470" y2="440"/>
+              <line x1="0" y1="55" x2="600" y2="55"/>
+              <line x1="0" y1="110" x2="600" y2="110"/>
+              <line x1="0" y1="170" x2="600" y2="170"/>
+              <line x1="0" y1="250" x2="600" y2="250"/>
+              <line x1="0" y1="310" x2="600" y2="310"/>
+              <line x1="0" y1="370" x2="600" y2="370"/>
+            </g>
+            <!-- Secondary streets (white, medium) -->
+            <g stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round">
+              <line x1="0" y1="200" x2="600" y2="200"/>
+              <line x1="290" y1="0" x2="290" y2="440"/>
+              <path d="M0 280 Q150 265 300 280 Q450 295 600 278"/>
+              <path d="M0 135 Q200 118 400 135 Q500 142 600 128"/>
+              <line x1="200" y1="0" x2="200" y2="440"/>
+              <line x1="440" y1="0" x2="440" y2="440"/>
+              <line x1="0" y1="340" x2="600" y2="340"/>
+              <path d="M145 0 Q155 100 175 200 Q195 300 185 440"/>
+            </g>
+            <!-- Major roads (white, wider) -->
+            <g stroke="white" stroke-width="5" fill="none" stroke-linecap="round">
+              <!-- Peters Creek Pkwy -->
+              <path d="M200 0 Q205 110 210 200 Q215 300 205 440"/>
+              <!-- University Pkwy -->
+              <path d="M0 135 Q150 118 290 128 Q350 132 440 125"/>
+              <!-- Silas Creek Pkwy -->
+              <path d="M145 0 Q148 70 160 140 Q175 210 155 310 Q140 380 130 440"/>
+            </g>
+            <!-- I-40 highway (yellow-white with casing) -->
+            <path d="M0 215 Q100 198 200 203 Q300 208 400 198 Q500 188 600 193" stroke="#ccc5b8" stroke-width="9" fill="none" stroke-linecap="round"/>
+            <path d="M0 215 Q100 198 200 203 Q300 208 400 198 Q500 188 600 193" stroke="white" stroke-width="6" fill="none" stroke-linecap="round"/>
+            <path d="M0 215 Q100 198 200 203 Q300 208 400 198 Q500 188 600 193" stroke="#f5deb3" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.5"/>
+            <!-- US-52 highway (casing + white) -->
+            <path d="M305 0 Q300 80 295 160 Q290 240 300 320 Q305 380 310 440" stroke="#ccc5b8" stroke-width="9" fill="none" stroke-linecap="round"/>
+            <path d="M305 0 Q300 80 295 160 Q290 240 300 320 Q305 380 310 440" stroke="white" stroke-width="6" fill="none" stroke-linecap="round"/>
+            <path d="M305 0 Q300 80 295 160 Q290 240 300 320 Q305 380 310 440" stroke="#f5deb3" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.5"/>
+            <!-- US-421 -->
+            <path d="M0 65 Q120 125 240 185 Q360 245 480 305 Q540 335 600 365" stroke="#ccc5b8" stroke-width="7" fill="none" stroke-linecap="round"/>
+            <path d="M0 65 Q120 125 240 185 Q360 245 480 305 Q540 335 600 365" stroke="white" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+            <!-- Business 40 -->
+            <path d="M60 245 Q160 228 260 232 Q340 235 420 240 Q500 245 580 242" stroke="#ccc5b8" stroke-width="6" fill="none" stroke-linecap="round"/>
+            <path d="M60 245 Q160 228 260 232 Q340 235 420 240 Q500 245 580 242" stroke="white" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+            <!-- Highway shields -->
+            <rect x="238" y="190" width="30" height="16" rx="3" fill="#3D3D3A"/>
+            <text x="253" y="201.5" text-anchor="middle" fill="white" font-size="9" font-family="DM Sans,sans-serif" font-weight="700">I-40</text>
+            <rect x="310" y="118" width="22" height="16" rx="3" fill="#3D3D3A"/>
+            <text x="321" y="129.5" text-anchor="middle" fill="white" font-size="8" font-family="DM Sans,sans-serif" font-weight="700">52</text>
+            <rect x="370" y="245" width="24" height="16" rx="3" fill="#3D3D3A"/>
+            <text x="382" y="256.5" text-anchor="middle" fill="white" font-size="7.5" font-family="DM Sans,sans-serif" font-weight="700">421</text>
+            <!-- Neighborhood labels -->
+            <text x="285" y="168" text-anchor="middle" fill="#8a847a" font-size="10" font-family="DM Sans,sans-serif" font-weight="600" letter-spacing="2.5">DOWNTOWN</text>
+            <text x="155" cy="310" y="330" text-anchor="middle" fill="#a09a90" font-size="8.5" font-family="DM Sans,sans-serif" font-weight="500" letter-spacing="2">ARDMORE</text>
+            <text x="445" y="135" text-anchor="middle" fill="#a09a90" font-size="8.5" font-family="DM Sans,sans-serif" font-weight="500" letter-spacing="2">EAST WINSTON</text>
+            <text x="115" y="195" text-anchor="middle" fill="#a09a90" font-size="8.5" font-family="DM Sans,sans-serif" font-weight="500" letter-spacing="2">WEST END</text>
+            <text x="355" y="305" text-anchor="middle" fill="#a09a90" font-size="8.5" font-family="DM Sans,sans-serif" font-weight="500" letter-spacing="2">WAUGHTOWN</text>
+            <!-- Pin markers -->
+            <!-- User location (amber with pulse) -->
+            <circle cx="290" cy="205" r="18" fill="rgba(232,168,77,0.15)"/>
+            <circle cx="290" cy="205" r="11" fill="#E8A84D" stroke="white" stroke-width="3"/>
+            <circle cx="290" cy="205" r="4" fill="white" opacity="0.7"/>
+            <!-- 1 - Sunnyside Ministry -->
+            <circle cx="265" cy="280" r="11" fill="#9E2B3A" stroke="white" stroke-width="2.5"/>
+            <text x="265" y="284" text-anchor="middle" fill="white" font-size="9" font-family="DM Sans,sans-serif" font-weight="700">1</text>
+            <!-- 2 - Crisis Control -->
+            <circle cx="310" cy="158" r="11" fill="#9E2B3A" stroke="white" stroke-width="2.5"/>
+            <text x="310" y="162" text-anchor="middle" fill="white" font-size="9" font-family="DM Sans,sans-serif" font-weight="700">2</text>
+            <!-- 3 - Mobile Pantry -->
+            <circle cx="205" cy="248" r="11" fill="#9E2B3A" stroke="white" stroke-width="2.5"/>
+            <text x="205" y="252" text-anchor="middle" fill="white" font-size="9" font-family="DM Sans,sans-serif" font-weight="700">3</text>
+            <!-- 4 - Salvation Army -->
+            <circle cx="295" cy="138" r="11" fill="#9E2B3A" stroke="white" stroke-width="2.5"/>
+            <text x="295" y="142" text-anchor="middle" fill="white" font-size="9" font-family="DM Sans,sans-serif" font-weight="700">4</text>
+            <!-- 5 - Bethesda Center -->
+            <circle cx="268" cy="152" r="11" fill="#9E2B3A" stroke="white" stroke-width="2.5"/>
+            <text x="268" y="156" text-anchor="middle" fill="white" font-size="9" font-family="DM Sans,sans-serif" font-weight="700">5</text>
+          </svg>
+        </div>
+        <div class="ff-listings">
+          <div class="ff-results-count">Showing 5 nearest of 23&nbsp;locations</div>
+          <div class="ff-listing">
+            <div class="ff-listing-num">1</div>
+            <div class="ff-listing-info">
+              <div class="ff-listing-name">Sunnyside Ministry</div>
+              <div class="ff-listing-address">1321 Waughtown St, Winston&#8209;Salem</div>
+              <div class="ff-listing-meta">
+                <span class="ff-listing-tag">Pantry</span>
+                <span class="ff-listing-dist">1.2&nbsp;mi</span>
+              </div>
+            </div>
+          </div>
+          <div class="ff-listing">
+            <div class="ff-listing-num">2</div>
+            <div class="ff-listing-info">
+              <div class="ff-listing-name">Crisis Control Ministry</div>
+              <div class="ff-listing-address">200 E 10th St, Winston&#8209;Salem</div>
+              <div class="ff-listing-meta">
+                <span class="ff-listing-tag">Pantry</span>
+                <span class="ff-listing-dist">2.4&nbsp;mi</span>
+              </div>
+            </div>
+          </div>
+          <div class="ff-listing">
+            <div class="ff-listing-num">3</div>
+            <div class="ff-listing-info">
+              <div class="ff-listing-name">Second Harvest Mobile&nbsp;Pantry</div>
+              <div class="ff-listing-address">Rupert Bell Recreation Center, Winston&#8209;Salem</div>
+              <div class="ff-listing-meta">
+                <span class="ff-listing-tag">Mobile Pantry</span>
+                <span class="ff-listing-dist">3.1&nbsp;mi</span>
+              </div>
+            </div>
+          </div>
+          <div class="ff-listing">
+            <div class="ff-listing-num">4</div>
+            <div class="ff-listing-info">
+              <div class="ff-listing-name">Salvation Army of&nbsp;Winston&#8209;Salem</div>
+              <div class="ff-listing-address">1255 N Trade St, Winston&#8209;Salem</div>
+              <div class="ff-listing-meta">
+                <span class="ff-listing-tag">Hot Meals</span>
+                <span class="ff-listing-dist">3.8&nbsp;mi</span>
+              </div>
+            </div>
+          </div>
+          <div class="ff-listing">
+            <div class="ff-listing-num">5</div>
+            <div class="ff-listing-info">
+              <div class="ff-listing-name">Bethesda Center for the&nbsp;Homeless</div>
+              <div class="ff-listing-address">930 Patterson Ave, Winston&#8209;Salem</div>
+              <div class="ff-listing-meta">
+                <span class="ff-listing-tag">Hot Meals</span>
+                <span class="ff-listing-dist">4.2&nbsp;mi</span>
+              </div>
+            </div>
+          </div>
+          <a href="https://foodfinder.secondharvestnwnc.org" class="ff-view-all" target="_blank" rel="noopener">View all locations <span>→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISSION STORY CARD -->
+  <section class="section" aria-label="Our Mission">
+    <div class="fade-up">
+      <div class="section-label">Our Mission</div>
+      <h2 class="section-heading">Where food meets&nbsp;opportunity.</h2>
+    </div>
+    <div class="story-card fade-up">
+      <div class="story-card-img" style="background-image: url('images/our-mission.jpg');" role="img" aria-label="Second Harvest Food Bank of Northwest North Carolina facility"></div>
+      <div class="story-card-content">
+        <h3>More than meals.</h3>
+        <p>Second Harvest Food Bank of Northwest NC doesn't just distribute food. We build pathways — culinary training, nutrition education, job skills, and community connection — because hunger is never just about&nbsp;food.</p>
+        <p>Across 18 counties, 500+ partner agencies, and one 140,000 sq ft facility designed with the same care we bring to every meal, we're proving that a food bank can be something the whole community is proud to be part&nbsp;of.</p>
+        <a href="#" class="btn btn--page-primary">Learn about our work</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRAMS -->
+  <section class="section" aria-label="Our Programs">
+    <div class="fade-up">
+      <div class="section-label">Our Programs</div>
+      <h2 class="section-heading">Food access. Career training.<br>Community in every&nbsp;form.</h2>
+    </div>
+    <div class="programs-grid">
+      <div class="program-card fade-up">
+        <img class="program-img" id="progImg1" src="images/our-programs.jpg" alt="Food Distribution">
+        <div class="program-card-body">
+          <h3>Food Distribution</h3>
+          <p>Mobile pantries, partner agencies, and direct distribution across 18&nbsp;counties.</p>
+          <a href="#" class="program-card-link">Learn more <span>→</span></a>
+        </div>
+      </div>
+      <div class="program-card fade-up" data-delay="80">
+        <img class="program-img" id="progImg2" src="images/food-distribution.jpg" alt="Culinary Training">
+        <div class="program-card-body">
+          <h3>Culinary Training</h3>
+          <p>Providence Culinary Training builds careers from intro courses to professional&nbsp;catering.</p>
+          <a href="#" class="program-card-link">Learn more <span>→</span></a>
+        </div>
+      </div>
+      <div class="program-card fade-up" data-delay="160">
+        <img class="program-img" id="progImg3" style="object-position:center 75%;" src="images/culinary-training.jpg" alt="Nutrition and Health">
+        <div class="program-card-body">
+          <h3>Nutrition &amp; Health</h3>
+          <p>Education that connects food to wellbeing. Cooking classes, SNAP assistance, and&nbsp;more.</p>
+          <a href="#" class="program-card-link">Learn more <span>→</span></a>
+        </div>
+      </div>
+      <div class="program-card fade-up" data-delay="240">
+        <img class="program-img" id="progImg4" src="images/nutrition-and-health.jpg" alt="Children and Seniors" style="object-position:center 20%;">
+        <div class="program-card-body">
+          <h3>Children &amp; Seniors</h3>
+          <p>Summer meals, after-school programs, and senior nutrition reaching every&nbsp;generation.</p>
+          <a href="#" class="program-card-link">Learn more <span>→</span></a>
+        </div>
+      </div>
+      <div class="program-card fade-up" data-delay="320">
+        <img class="program-img" id="progImg5" src="images/children-and-seniors.jpg" alt="Policy and Advocacy">
+        <div class="program-card-body">
+          <h3>Policy &amp; Advocacy</h3>
+          <p>Systemic change through research, legislation, and community voice at every&nbsp;level.</p>
+          <a href="#" class="program-card-link">Learn more <span>→</span></a>
+        </div>
+      </div>
+      <div class="program-card fade-up" data-delay="400">
+        <img class="program-img" id="progImg6" src="images/policy-and-advocacy.jpg" alt="Disaster Response">
+        <div class="program-card-body">
+          <h3>Disaster Response</h3>
+          <p>Rapid food deployment when communities face crisis. Ready before the call&nbsp;comes.</p>
+          <a href="#" class="program-card-link">Learn more <span>→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IMPACT STATS -->
+  <section class="section" aria-label="Our Impact">
+    <div class="fade-up">
+      <div class="section-label">Our Impact</div>
+      <h2 class="section-heading">The numbers behind the&nbsp;mission.</h2>
+    </div>
+    <div class="impact-grid">
+      <div class="impact-card fade-up">
+        <div class="impact-num" data-count="35" data-suffix="M">0<span class="suffix">M</span></div>
+        <div class="impact-label">Meals provided to families, children, and seniors across Northwest North Carolina last&nbsp;year.</div>
+      </div>
+      <div class="impact-card fade-up" data-delay="100">
+        <div class="impact-num" data-count="500" data-suffix="+">0<span class="suffix">+</span></div>
+        <div class="impact-label">Partner programs — pantries, soup kitchens, shelters, and community&nbsp;organizations.</div>
+      </div>
+      <div class="impact-card fade-up" data-delay="200">
+        <div class="impact-num" data-count="18">0</div>
+        <div class="impact-label">Counties served, from the Blue Ridge Mountains to the Piedmont&nbsp;Triad.</div>
+      </div>
+      <div class="impact-card fade-up" data-delay="100">
+        <div class="impact-num" data-count="5" data-suffix="M">0<span class="suffix">M lbs</span></div>
+        <div class="impact-label">Of fresh produce distributed — apples, oranges, greens, and more from local farms and&nbsp;donors.</div>
+      </div>
+      <div class="impact-card fade-up" data-delay="200">
+        <div class="impact-num" data-count="30" data-suffix="K">0<span class="suffix">K</span></div>
+        <div class="impact-label">Volunteer hours donated by community members who show up for their&nbsp;neighbors.</div>
+      </div>
+      <div class="impact-card fade-up" data-delay="300">
+        <div class="impact-num" data-count="1000" data-suffix="+">0<span class="suffix">+</span></div>
+        <div class="impact-label">Culinary training graduates — building careers and confidence through&nbsp;food.</div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- VOLUNTEER SECTION -->
+  <section aria-label="Volunteer" style="padding: clamp(24px, 3vw, 40px) 0 var(--section-gap) 0;">
+    <div class="volunteer fade-up">
+      <div class="volunteer-content">
+        <div class="section-label">Volunteer</div>
+        <h2>The most meaningful morning in the&nbsp;Triad.</h2>
+        <p>Roll up your sleeves. Turn up the music. Feed your community. Volunteer shifts are every Friday — and they're nothing like what you&nbsp;expect.</p>
+        <a href="#" class="btn btn--amber-hero">Volunteer opportunities</a>
+      </div>
+      <div class="volunteer-img" style="background-image: url('images/volunteer-warehouse.jpg');" role="img" aria-label="Volunteers sorting and packing food at Second Harvest warehouse"></div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section aria-label="Take Action" style="padding: clamp(24px, 3vw, 40px) 0 var(--section-gap) 0;">
+    <div class="final-cta fade-up" style="background-image: url('images/volunteers-sorting-and-packing-food-at-second-harv.jpg');">
+      <div class="final-cta-scrim"></div>
+      <div class="final-cta-content">
+        <h2>Northwest NC is fed by people like&nbsp;you.</h2>
+        <p>Whether you give, volunteer, advocate, or simply share this page — you become part of a community feeding 18&nbsp;counties.</p>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+          <a href="#" class="btn btn--primary">Donate today</a>
+          <a href="#" class="btn btn--secondary">Get involved</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================================
+     FOOTER
+     ============================================ -->
+<footer class="footer" role="contentinfo">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="images/footer-logo.png" alt="Second Harvest Food Bank of Northwest NC" class="footer-logo">
+        <p>Everyone deserves to eat. Serving 18 counties across Northwest North Carolina with food access, workforce training, and community&nbsp;connection.</p>
+        <div class="footer-newsletter">
+          <input type="email" placeholder="Your email" aria-label="Email for newsletter">
+          <button type="button">Subscribe</button>
+        </div>
+      </div>
+      <div class="footer-social">
+        <a href="#" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+        <a href="#" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+        <a href="#" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+        <a href="#" aria-label="YouTube"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h4>Second Harvest Food Bank of&nbsp;Northwest&nbsp;NC</h4>
+        <p>3330 Shorefair Drive<br>Winston-Salem, NC 27105</p>
+        <p style="margin-top:8px;">(336) 784-5770</p>
+        <p style="margin-top:4px;">501(c)(3) nonprofit as recognized by the&nbsp;IRS.<br>Tax ID Number:&nbsp;58-1457912</p>
+      </div>
+      <div class="footer-col">
+        <h4>Need Help</h4>
+        <a href="#">Find food near you</a>
+        <a href="#">How to get help</a>
+        <a href="#">Eligibility</a>
+        <a href="#">Additional resources</a>
+        <a href="#">En español</a>
+      </div>
+      <div class="footer-col">
+        <h4>Get Involved</h4>
+        <a href="#">Donate</a>
+        <a href="#">Become a Meal Maker</a>
+        <a href="#">Volunteer</a>
+        <a href="#">Host a food drive</a>
+        <a href="#">Advocate</a>
+        <a href="#">Careers</a>
+      </div>
+      <div class="footer-col">
+        <h4>About Us</h4>
+        <a href="#">Our mission</a>
+        <a href="#">Our programs</a>
+        <a href="#">Leadership &amp; board</a>
+        <a href="#">Annual report</a>
+        <a href="#">Financial transparency</a>
+        <a href="#">Press &amp; media</a>
+        <a href="#">Contact us</a>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <span>© 2026 Second Harvest Food Bank of Northwest NC. All rights&nbsp;reserved.</span>
+      <div class="footer-legal-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Financials</a>
+        <a href="#">Sitemap</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================
+     FLOATING ELEMENTS
+     ============================================ -->
+<div class="floating-ctas" id="floating-ctas">
+  <a href="#" class="floating-btn floating-btn--navy">Need food?</a>
+  <a href="#" class="floating-btn floating-btn--cran">Donate</a>
+</div>
+
+<div class="ali-bubble" aria-label="Chat with Ali, Second Harvest assistant" role="button" tabindex="0">
+  <span class="ali-bubble-icon">A</span>
+  <span class="ali-dot"></span>
+</div>
+
+<!-- ============================================
+     JAVASCRIPT
+     ============================================ -->
+<script>
+// ---- HERO CAROUSEL ----
+const heroSlides = document.querySelectorAll('.hero-slide');
+const heroDots = document.querySelectorAll('.hero-dot');
+const heroBgs = document.querySelectorAll('.hero-bg');
+let currentSlide = 0;
+let slideTimer = null;
+const SLIDE_DURATION = 15000;
+
+function goToSlide(index) {
+  heroSlides.forEach(s => s.classList.remove('active'));
+  heroDots.forEach(d => { d.classList.remove('active'); d.querySelector('.hero-dot-fill').style.animation = 'none'; });
+  heroBgs.forEach(b => b.classList.remove('active'));
+  
+  currentSlide = index;
+  heroSlides[currentSlide].classList.add('active');
+  heroDots[currentSlide].classList.add('active');
+  // Activate matching bg, or last available if no match
+  const matchBg = document.querySelector(`.hero-bg[data-bg="${currentSlide}"]`);
+  if (matchBg) matchBg.classList.add('active');
+  else if (heroBgs.length) heroBgs[0].classList.add('active');
+  
+  // restart dot fill animation
+  const fill = heroDots[currentSlide].querySelector('.hero-dot-fill');
+  void fill.offsetWidth;
+  fill.style.animation = `dotProgress ${SLIDE_DURATION}ms linear forwards`;
+  
+  clearInterval(slideTimer);
+  slideTimer = setInterval(() => {
+    goToSlide((currentSlide + 1) % heroSlides.length);
+  }, SLIDE_DURATION);
+}
+
+heroDots.forEach((dot, i) => {
+  dot.addEventListener('click', () => goToSlide(i));
+});
+
+// Start carousel
+goToSlide(0);
+
+// ---- NAV SCROLL BEHAVIOR ----
+const nav = document.querySelector('.nav');
+let lastScroll = 0;
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+  
+  // Floating CTAs appear after scrolling past hero
+  const floatingCtas = document.getElementById('floating-ctas');
+  floatingCtas.classList.toggle('visible', window.scrollY > 600);
+}, { passive: true });
+
+// ---- DROPDOWN NAVIGATION ----
+const navLinks = document.querySelectorAll('.nav-link[data-dropdown]');
+const dropdownPanels = document.querySelectorAll('.dropdown-panel');
+const scrim = document.getElementById('dropdown-scrim');
+let activeDropdown = null;
+let closeTimeout = null;
+
+function openDropdown(id) {
+  clearTimeout(closeTimeout);
+  dropdownPanels.forEach(p => p.classList.remove('visible'));
+  navLinks.forEach(l => l.classList.remove('active'));
+  
+  const panel = document.getElementById('dd-' + id);
+  const link = document.querySelector(`[data-dropdown="${id}"]`);
+  if (panel) {
+    panel.classList.add('visible');
+    scrim.classList.add('visible');
+    link.classList.add('active');
+    activeDropdown = id;
+  }
+}
+
+function closeDropdowns() {
+  closeTimeout = setTimeout(() => {
+    dropdownPanels.forEach(p => p.classList.remove('visible'));
+    navLinks.forEach(l => l.classList.remove('active'));
+    scrim.classList.remove('visible');
+    activeDropdown = null;
+  }, 120);
+}
+
+navLinks.forEach(link => {
+  link.addEventListener('mouseenter', () => openDropdown(link.dataset.dropdown));
+  link.addEventListener('focus', () => openDropdown(link.dataset.dropdown));
+});
+
+dropdownPanels.forEach(panel => {
+  panel.addEventListener('mouseenter', () => clearTimeout(closeTimeout));
+  panel.addEventListener('mouseleave', closeDropdowns);
+});
+
+document.querySelector('.nav-links').addEventListener('mouseleave', closeDropdowns);
+scrim.addEventListener('click', () => {
+  clearTimeout(closeTimeout);
+  dropdownPanels.forEach(p => p.classList.remove('visible'));
+  navLinks.forEach(l => l.classList.remove('active'));
+  scrim.classList.remove('visible');
+  activeDropdown = null;
+});
+
+// Close on Escape
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && activeDropdown) {
+    closeDropdowns();
+    clearTimeout(closeTimeout);
+    dropdownPanels.forEach(p => p.classList.remove('visible'));
+    navLinks.forEach(l => l.classList.remove('active'));
+    scrim.classList.remove('visible');
+    activeDropdown = null;
+  }
+});
+
+// ---- SCROLL ANIMATIONS ----
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const delay = entry.target.dataset.delay || 0;
+      setTimeout(() => {
+        entry.target.classList.add('visible');
+      }, parseInt(delay));
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.fade-up, .involved-card').forEach(el => observer.observe(el));
+
+// ---- ANIMATED COUNTERS ----
+function animateCounter(el) {
+  const target = parseInt(el.dataset.count);
+  const suffixEl = el.querySelector('.suffix');
+  const suffixHTML = suffixEl ? suffixEl.outerHTML : (el.dataset.suffix || '');
+  const hasSuffixEl = !!suffixEl;
+  const duration = 2200;
+  const start = performance.now();
+  
+  function formatNum(n) {
+    return n >= 1000 ? n.toLocaleString() : n.toString();
+  }
+  
+  function update(now) {
+    const elapsed = now - start;
+    const progress = Math.min(elapsed / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const current = Math.round(target * eased);
+    if (hasSuffixEl) {
+      el.innerHTML = formatNum(current) + suffixHTML;
+    } else {
+      el.textContent = formatNum(current) + (el.dataset.suffix || '');
+    }
+    if (progress < 1) requestAnimationFrame(update);
+  }
+  requestAnimationFrame(update);
+}
+
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      animateCounter(entry.target);
+      counterObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('[data-count]').forEach(el => counterObserver.observe(el));
+// ---- FOOD FINDER SEARCH ----
+(function() {
+  var ffBtn = document.querySelector('.ff-btn');
+  var ffInput = document.querySelector('.ff-input');
+  var ffResults = document.getElementById('ffResults');
+
+  if (ffBtn && ffResults) {
+    function showResults() {
+      var val = ffInput ? ffInput.value.trim() : '';
+      if (val.length < 2) {
+        ffInput.style.borderColor = 'var(--cranberry)';
+        setTimeout(function() { ffInput.style.borderColor = ''; }, 1200);
+        ffInput.focus();
+        return;
+      }
+      ffResults.classList.add('visible');
+      setTimeout(function() {
+        ffResults.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 350);
+    }
+    ffBtn.addEventListener('click', showResults);
+    if (ffInput) {
+      ffInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') showResults();
+      });
+    }
+    var ffClose = document.getElementById('ffClose');
+    if (ffClose) {
+      ffClose.addEventListener('click', function() {
+        ffResults.classList.remove('visible');
+      });
+    }
+  }
+})();
+
+</script>
+
+<!-- ALI CHAT WIDGET -->
+<style>
+.ali-launcher {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--navy);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 14px 24px 14px 20px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 24px rgba(42,56,129,0.35), 0 1px 4px rgba(0,0,0,0.1);
+  transition: all 0.3s var(--ease);
+}
+.ali-launcher:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(42,56,129,0.45), 0 2px 8px rgba(0,0,0,0.15);
+}
+.ali-launcher.hidden { opacity: 0; pointer-events: none; transform: translateY(20px); }
+.ali-launcher svg { flex-shrink: 0; }
+
+.ali-panel {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 10000;
+  width: 400px;
+  max-width: calc(100vw - 32px);
+  height: 560px;
+  max-height: calc(100vh - 48px);
+  background: var(--cream);
+  border-radius: 20px;
+  box-shadow: 0 8px 48px rgba(42,56,129,0.25), 0 2px 8px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px) scale(0.95);
+  transform-origin: bottom right;
+  transition: all 0.35s var(--ease);
+}
+.ali-panel.visible {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0) scale(1);
+}
+
+.ali-header {
+  background: var(--navy);
+  color: white;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+.ali-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--amber);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--steel);
+  flex-shrink: 0;
+}
+.ali-header-info { flex: 1; }
+.ali-header-info h4 { font-size: 15px; font-weight: 600; margin: 0; }
+.ali-header-info span { font-size: 12px; opacity: 0.7; }
+.ali-close {
+  background: rgba(255,255,255,0.1);
+  border: none;
+  color: white;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+.ali-close:hover { background: rgba(255,255,255,0.2); }
+
+.ali-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.ali-messages::-webkit-scrollbar { width: 4px; }
+.ali-messages::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.12); border-radius: 4px; }
+
+.ali-msg {
+  max-width: 85%;
+  padding: 10px 14px;
+  border-radius: 16px;
+  font-size: 14px;
+  line-height: 1.55;
+  word-wrap: break-word;
+}
+.ali-msg.ali {
+  background: white;
+  color: var(--steel);
+  align-self: flex-start;
+  border-bottom-left-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.ali-msg.user {
+  background: var(--navy);
+  color: white;
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+}
+.ali-msg.ali p { margin: 0 0 8px 0; }
+.ali-msg.ali p:last-child { margin-bottom: 0; }
+.ali-typing {
+  display: flex;
+  gap: 4px;
+  padding: 12px 16px;
+  align-self: flex-start;
+}
+.ali-typing span {
+  width: 6px; height: 6px;
+  background: rgba(42,56,129,0.3);
+  border-radius: 50%;
+  animation: aliDot 1.2s infinite;
+}
+.ali-typing span:nth-child(2) { animation-delay: 0.2s; }
+.ali-typing span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes aliDot {
+  0%, 60%, 100% { opacity: 0.3; transform: translateY(0); }
+  30% { opacity: 1; transform: translateY(-4px); }
+}
+
+.ali-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 0 16px 12px;
+  flex-shrink: 0;
+}
+.ali-suggestions button {
+  background: white;
+  border: 1px solid rgba(42,56,129,0.12);
+  color: var(--navy);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.ali-suggestions button:hover {
+  background: var(--navy);
+  color: white;
+  border-color: var(--navy);
+}
+
+.ali-input-area {
+  padding: 12px 16px;
+  border-top: 1px solid rgba(0,0,0,0.06);
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-shrink: 0;
+  background: white;
+}
+.ali-input {
+  flex: 1;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 20px;
+  padding: 10px 16px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+  background: var(--cream);
+}
+.ali-input:focus { border-color: var(--navy); }
+.ali-input::placeholder { color: rgba(0,0,0,0.35); }
+.ali-send {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--navy);
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+.ali-send:hover { background: #1e2c6a; }
+.ali-send:disabled { opacity: 0.4; cursor: not-allowed; }
+
+@media (max-width: 480px) {
+  .ali-panel { width: calc(100vw - 16px); right: 8px; bottom: 8px; height: calc(100vh - 80px); border-radius: 16px; }
+  .ali-launcher { bottom: 16px; right: 16px; }
+}
+</style>
+
+<button class="ali-launcher" id="aliLauncher" aria-label="Open chat with Ali">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+  Ask Ali
+</button>
+
+<div class="ali-panel" id="aliPanel">
+  <div class="ali-header">
+    <div class="ali-avatar">Ali</div>
+    <div class="ali-header-info">
+      <h4>Ali</h4>
+      <span>Second Harvest virtual&nbsp;concierge</span>
+    </div>
+    <button class="ali-close" id="aliClose" aria-label="Close chat">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <div class="ali-messages" id="aliMessages">
+    <div class="ali-msg ali">Hi, I'm Ali — your virtual concierge for Second Harvest Food Bank. I can help you find food near you, learn about volunteer opportunities, or answer questions about our programs. How can I&nbsp;help?</div>
+  </div>
+  <div class="ali-suggestions" id="aliSuggestions">
+    <button>Find food near me</button>
+    <button>How do I volunteer?</button>
+    <button>What is a Meal Maker?</button>
+    <button>Your programs</button>
+  </div>
+  <div class="ali-input-area">
+    <input type="text" class="ali-input" id="aliInput" placeholder="Ask me anything..." autocomplete="off">
+    <button class="ali-send" id="aliSend" aria-label="Send message">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+    </button>
+  </div>
+</div>
+
+<script>
+(function() {
+  var launcher = document.getElementById('aliLauncher');
+  var panel = document.getElementById('aliPanel');
+  var closeBtn = document.getElementById('aliClose');
+  var messages = document.getElementById('aliMessages');
+  var input = document.getElementById('aliInput');
+  var sendBtn = document.getElementById('aliSend');
+  var suggestions = document.getElementById('aliSuggestions');
+  var isOpen = false;
+  var isLoading = false;
+  var history = [];
+
+  var systemPrompt = "You are Ali, the friendly virtual concierge for Second Harvest Food Bank of Northwest North Carolina (SHFBNWNC). You help visitors with warmth, clarity, and short declarative sentences. You never use guilt framing. Numbers replace adjectives.\n\nKey facts:\n- Second Harvest serves 18 counties from the Blue Ridge Mountains to the Piedmont Triad\n- Address: 3330 Shorefair Drive, Winston-Salem, NC 27105\n- Phone: (336) 784-5770\n- 35 million meals provided last year through 500+ partner programs\n- 5 million pounds of fresh produce distributed\n- 30,000 volunteer hours donated\n- Volunteer opportunities are on Fridays at the warehouse\n- The Food Finder tool at foodfinder.secondharvestnwnc.org helps people locate food near them\n- Meal Makers are monthly donors whose recurring gifts keep the lunch bell ringing — $25/month feeds a family for a week\n- Providence Culinary Training is our workforce program with tracks: Intro, Advanced, and Specialization\n- CEO is Eric Aft\n- SHFBNWNC is a 501(c)(3) nonprofit, Tax ID 58-1457912\n- Programs include: Food Distribution, Culinary Training, Nutrition & Health Education, Children & Seniors programs, Policy & Advocacy, Disaster Response\n- Second Course is a new free grocery store concept in Greensboro\n\nKeep responses concise (2-4 sentences when possible). Be warm but efficient. If someone needs food, prioritize directing them to the Food Finder. Use the brand voice: short, declarative, strength-based, never pity.";
+
+  function openChat() {
+    isOpen = true;
+    panel.classList.add('visible');
+    launcher.classList.add('hidden');
+    setTimeout(function() { input.focus(); }, 400);
+  }
+
+  function closeChat() {
+    isOpen = false;
+    panel.classList.remove('visible');
+    launcher.classList.remove('hidden');
+  }
+
+  launcher.addEventListener('click', openChat);
+  closeBtn.addEventListener('click', closeChat);
+
+  function addMessage(text, role) {
+    var div = document.createElement('div');
+    div.className = 'ali-msg ' + (role === 'user' ? 'user' : 'ali');
+    div.innerHTML = text.replace(/\n/g, '<br>');
+    messages.appendChild(div);
+    messages.scrollTop = messages.scrollHeight;
+    return div;
+  }
+
+  function showTyping() {
+    var div = document.createElement('div');
+    div.className = 'ali-typing';
+    div.id = 'aliTyping';
+    div.innerHTML = '<span></span><span></span><span></span>';
+    messages.appendChild(div);
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  function hideTyping() {
+    var t = document.getElementById('aliTyping');
+    if (t) t.remove();
+  }
+
+  function hideSuggestions() {
+    suggestions.style.display = 'none';
+  }
+
+  async function sendMessage(text) {
+    if (!text.trim() || isLoading) return;
+    isLoading = true;
+    sendBtn.disabled = true;
+    hideSuggestions();
+
+    addMessage(text, 'user');
+    history.push({ role: 'user', content: text });
+    input.value = '';
+
+    showTyping();
+
+    try {
+      var apiMessages = history.slice(-10);
+      var response = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          model: 'claude-sonnet-4-20250514',
+          max_tokens: 1000,
+          system: systemPrompt,
+          messages: apiMessages
+        })
+      });
+
+      var data = await response.json();
+      hideTyping();
+
+      var reply = '';
+      if (data.content) {
+        for (var i = 0; i < data.content.length; i++) {
+          if (data.content[i].type === 'text') {
+            reply += data.content[i].text;
+          }
+        }
+      }
+
+      if (!reply) reply = "I'm sorry, I wasn't able to process that. Could you try rephrasing your question?";
+
+      history.push({ role: 'assistant', content: reply });
+      addMessage(reply, 'ali');
+
+    } catch (err) {
+      hideTyping();
+      addMessage("I'm having trouble connecting right now. Please try again in a moment, or call us at (336) 784-5770.", 'ali');
+    }
+
+    isLoading = false;
+    sendBtn.disabled = false;
+    input.focus();
+  }
+
+  sendBtn.addEventListener('click', function() { sendMessage(input.value); });
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage(input.value);
+    }
+  });
+
+  suggestions.addEventListener('click', function(e) {
+    if (e.target.tagName === 'BUTTON') {
+      sendMessage(e.target.textContent);
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
